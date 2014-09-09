@@ -213,6 +213,15 @@
 <div class="line"><br /></div>
 </div>
 </div>
+<div class="section" id="who-are-you">
+<h3>Who are you?<a class="headerlink" href="#who-are-you" title="Permalink to this headline">¶</a></h3>
+<p class="center large">Tell us a tiny bit about yourself:</p>
+<ul class="simple">
+<li>name</li>
+<li>programming background</li>
+<li>what do you hope to get from this class</li>
+</ul>
+</div>
 </div>
 <div class="section" id="introduction-to-this-class">
 <h2>Introduction to This Class<a class="headerlink" href="#introduction-to-this-class" title="Permalink to this headline">¶</a></h2>
@@ -227,7 +236,7 @@
 <p>Class email list: We will be using this list to communicate for this class:</p>
 <p><a class="reference external" href="mailto:sea-c25&#37;&#52;&#48;codefellows&#46;com">sea-c25<span>&#64;</span>codefellows<span>&#46;</span>com</a></p>
 <p><strong>Canvas</strong>:</p>
-<p>We will be using CAnvas to track your homework submission, but not much else:</p>
+<p>We will be using Canvas to track your homework submission, but not much else:</p>
 <p><a class="reference external" href="https://canvas.instructure.com/courses/881467">https://canvas.instructure.com/courses/881467</a></p>
 <p>You should have received and email invitation to join the class.</p>
 </div>
@@ -311,11 +320,12 @@ simpler</li>
 <ul class="build simple">
 <li>Adoption of Python 3 is growing fast<ul>
 <li>A few key packages still not supported (<a class="reference external" href="https://python3wos.appspot.com/">https://python3wos.appspot.com/</a>)</li>
+<li>Most code in the wild is still 2.x</li>
 </ul>
 </li>
-<li>Most code in the wild is still 2.x</li>
 <li>You <em>can</em> learn to write Python that is forward compatible from 2.x to 3.x</li>
 <li>We will be teaching from that perspective.</li>
+<li>If you find yourself needing to work with Python 2 and 3, there are ways to write compatible code: <a class="reference external" href="https://wiki.python.org/moin/PortingPythonToPy3k">https://wiki.python.org/moin/PortingPythonToPy3k</a></li>
 </ul>
 </div>
 </div>
@@ -395,7 +405,7 @@ given object:</p>
 <p>This allows you quite a bit of latitude in exploring what Python is.</p>
 <p>In addition to the built-in interpreter, there are several more advanced
 interpreters available to you.</p>
-<p>We&#8217;ll be using one in this course called <tt class="docutils literal"><span class="pre">iPython</span></tt>.</p>
+<p>We&#8217;ll be using one in this course called <tt class="docutils literal"><span class="pre">iPython</span></tt></p>
 <p>More on this soon.</p>
 </div>
 <div class="section" id="your-editor">
@@ -408,7 +418,7 @@ fashion.</p>
 <p>MS Word is <strong>not</strong> a text editor.</p>
 <p>Nor is <em>TextEdit</em> on a Mac.</p>
 <p><tt class="docutils literal"><span class="pre">Notepad</span></tt> is a text editor &#8211; but a crappy one.</p>
-<p>You need a real &#8220;programmers text editor&#8221;:</p>
+<p>You need a real &#8220;programmers text editor&#8221;</p>
 <p>A text editor saves only what it shows you, with no special formatting
 characters hidden behind the scenes.</p>
 <p>At a minimum, your editor should have:</p>
@@ -424,7 +434,8 @@ characters hidden behind the scenes.</p>
 <li>Interactive follow-along for debugging</li>
 </ul>
 <p>Have an editor that does all this? Feel free to use it.</p>
-<p>If not, I suggest <tt class="docutils literal"><span class="pre">Sublime</span> <span class="pre">Text</span></tt>?</p>
+<p>If not, I suggest <tt class="docutils literal"><span class="pre">Sublime</span> <span class="pre">Text</span></tt>:</p>
+<p><a class="reference external" href="http://www.sublimetext.com/">http://www.sublimetext.com/</a></p>
 </div>
 <div class="section" id="why-no-ide">
 <h3>Why No IDE?<a class="headerlink" href="#why-no-ide" title="Permalink to this headline">¶</a></h3>
@@ -469,24 +480,26 @@ $
 </div>
 <div class="section" id="step-2-pip">
 <h3>Step 2: Pip<a class="headerlink" href="#step-2-pip" title="Permalink to this headline">¶</a></h3>
-<p>Python comes with quite a bit.</p>
+<p>Python comes with quite a bit (&#8220;batteries included&#8221;).</p>
 <p>Sometimes you need a bit more.</p>
 <p>Pip allows you to install Python packages to expand your system.</p>
 <p>You install it by downloading and then executing an installer script:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -O https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100 1526k  100 1526k    0     0   189k      0  0:00:08  0:00:08 --:--:--  203k
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl -O https://bootstrap.pypa.io/get-pip.py
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                             Dload  Upload   Total   Spent    Left  Speed
+100 1309k  100 1309k    0     0   449k      0  0:00:02  0:00:02 --:--:--  449k
+
 <span class="nv">$ </span>python get-pip.py
 </pre></div>
 </div>
+<p>(or go to: <a class="reference external" href="http://pip.readthedocs.org/en/latest/installing.html">http://pip.readthedocs.org/en/latest/installing.html</a>)</p>
 <p>Once you&#8217;ve installed pip, you use it to install Python packages by name:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install foobar
 ...
 </pre></div>
 </div>
-<p>Let&#8217;s start by installing the only two packages you will install in your global
-environment.</p>
+<p>To find packages (and their proper names), you can search the python package index (PyPI):</p>
+<p><a class="reference external" href="https://pypi.python.org/pypi">https://pypi.python.org/pypi</a></p>
 </div>
 <div class="section" id="step-3-optional-virtualenv">
 <h3>Step 3: Optional &#8211; Virtualenv<a class="headerlink" href="#step-3-optional-virtualenv" title="Permalink to this headline">¶</a></h3>
@@ -1078,6 +1091,7 @@ object</strong> using the <tt class="docutils literal"><span class="pre">is</spa
 <span class="gh">Out[4]: </span><span class="go">u&#39;a string with an embedded &quot;quote&quot;&#39;</span>
 </pre></div>
 </div>
+<p>(what&#8217;s the &#8216;<tt class="docutils literal"><span class="pre">u</span></tt>&#8216; about?)</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [5]: </span><span class="sd">u&quot;&quot;&quot;a multi-line</span>
 <span class="gp">   ...: </span><span class="sd">string</span>
 <span class="gp">   ...: </span><span class="sd">all in one</span>
@@ -1166,12 +1180,12 @@ def       for       lambda    try
 <p>Exceptions are how Python tells you that something has gone wrong.</p>
 <p>There are several exceptions that you are likely to see a lot of:</p>
 <ul class="build simple">
-<li>NameError: indicates that you have tried to use a symbol that is not bound to
+<li><tt class="docutils literal"><span class="pre">NameError</span></tt>: indicates that you have tried to use a symbol that is not bound to
 a value.</li>
-<li>TypeError: indicates that you have tried to use the wrong kind of object for
+<li><tt class="docutils literal"><span class="pre">TypeError</span></tt>: indicates that you have tried to use the wrong kind of object for
 an operation.</li>
-<li>SyntaxError: indicates that you have mis-typed something.</li>
-<li>AttributeError: indicates that you have tried to access an attribute or
+<li><tt class="docutils literal"><span class="pre">SyntaxError</span></tt>: indicates that you have mis-typed something.</li>
+<li><tt class="docutils literal"><span class="pre">AttributeError</span></tt>: indicates that you have tried to access an attribute or
 method that an object does not have (this often means you have a different
 type of object than you expect)</li>
 </ul>
@@ -1179,7 +1193,7 @@ type of object than you expect)</li>
 <div class="section" id="functions">
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
 <p>What is a function?</p>
-<p>A function is a self-contained chunk of code</p>
+<p class="build">A function is a self-contained chunk of code</p>
 <p>You use them when you need the same code to run multiple times,
 or in multiple parts of the program.</p>
 <p>(DRY)</p>
