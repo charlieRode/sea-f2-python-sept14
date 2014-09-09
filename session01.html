@@ -142,11 +142,13 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="homework/index.html">Homework Materials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="homework/kata_fourteen.html">Kata Fourteen: Tom Swift Under Milk Wood</a></li>
-<li class="toctree-l2"><a class="reference internal" href="homework/html_builder.html">Html Renderer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="homework/html_builder.html">HTML Renderer Homework Assignment</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="supplements/index.html">Supplemental Materials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="supplements/python_for_mac.html">Setting up your Mac for Python and this class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supplements/python_for_windows.html">Setting up Windows for Python and this class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="supplements/python_for_linux.html">Setting up Linux for Python and this class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supplements/virtualenv.html">Working with Virtualenv</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supplements/sublime_as_ide.html">Turning Sublime Text Into a Lightweight Python IDE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="supplements/shell.html">Shell Customizations for Python Development</a></li>
@@ -202,7 +204,7 @@
 <h3>Your instructors<a class="headerlink" href="#your-instructors" title="Permalink to this headline">¶</a></h3>
 <div class="center large line-block">
 <div class="line">Christopher Barker</div>
-<div class="line">(pythonchb at gmail dot com)</div>
+<div class="line">(PythonCHB at gmail dot com)</div>
 <div class="line"><br /></div>
 </div>
 <div class="center large line-block">
@@ -222,6 +224,12 @@
 <p>Also there are homework descriptions and supplemental materials.</p>
 <p>The source of these materials are in Chris&#8217; gitHub repo:</p>
 <p><a class="reference external" href="http://github.com/PythonCHB/codefellows_f2_python">http://github.com/PythonCHB/codefellows_f2_python</a></p>
+<p>Class email list: We will be using this list to communicate for this class:</p>
+<p><a class="reference external" href="mailto:sea-c25&#37;&#52;&#48;codefellows&#46;com">sea-c25<span>&#64;</span>codefellows<span>&#46;</span>com</a></p>
+<p><strong>Canvas</strong>:</p>
+<p>We will be using CAnvas to track your homework submission, but not much else:</p>
+<p><a class="reference external" href="https://canvas.instructure.com/courses/881467">https://canvas.instructure.com/courses/881467</a></p>
+<p>You should have received and email invitation to join the class.</p>
 </div>
 <div class="section" id="what-is-python">
 <h3>What is Python?<a class="headerlink" href="#what-is-python" title="Permalink to this headline">¶</a></h3>
@@ -450,13 +458,14 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 $
 </pre></div>
 </div>
-<dl class="docutils">
-<dt>If not:</dt>
-<dd><ul class="first last simple">
+<p>If not:</p>
+<blockquote>
+<div><ul class="simple">
 <li><a class="reference external" href="./supplements/python_for_mac.html">For the mac</a></li>
+<li><a class="reference external" href="./supplements/python_for_linux.html">For linux</a></li>
+<li><a class="reference external" href="./supplements/python_for_windows.html">For windows</a></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </div>
 <div class="section" id="step-2-pip">
 <h3>Step 2: Pip<a class="headerlink" href="#step-2-pip" title="Permalink to this headline">¶</a></h3>
@@ -592,6 +601,25 @@ object?   -&gt; Details about <span class="s1">&#39;object&#39;</span>, use <spa
 </li>
 </ul>
 <p>That&#8217;s it &#8211; you can get a lot done with those.</p>
+</div>
+<div class="section" id="how-to-run-a-python-file">
+<h3>How to run a python file<a class="headerlink" href="#how-to-run-a-python-file" title="Permalink to this headline">¶</a></h3>
+<p>A file with python code in it is a &#8216;module&#8217; or &#8216;script&#8217;</p>
+<p>(more on the distiction later on...)</p>
+<p>It should be named with the <tt class="docutils literal"><span class="pre">.py</span></tt> extension: <tt class="docutils literal"><span class="pre">some_name.py</span></tt></p>
+<p>To run it, you have a couple options:</p>
+<ol class="arabic simple">
+<li>call python on the command line, and pass in your module name</li>
+</ol>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python the_name_of_the_script.py
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>run <tt class="docutils literal"><span class="pre">iPython</span></tt>, and run it from within iPython with the <tt class="docutils literal"><span class="pre">run</span></tt> command</li>
+</ol>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="n">run</span> <span class="n">the_file</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="basic-python-syntax">
@@ -1359,13 +1387,14 @@ exercises in Python programming</p>
 <div class="section" id="task-1">
 <h3>Task 1<a class="headerlink" href="#task-1" title="Permalink to this headline">¶</a></h3>
 <p><strong>Tell Us About Yourself</strong></p>
+<p>This is a way for you to learn a bit about gitHub, and how you are going to submit most of your homework.</p>
 <ul class="simple">
 <li>Create a new folder in the <tt class="docutils literal"><span class="pre">students</span></tt> folder in the class repository.<ul>
 <li>Create the folder in your clone of your fork of the repository.</li>
-<li>Name it with your own name in CamelCase, like: <tt class="docutils literal"><span class="pre">CrisBarker</span></tt>.</li>
+<li>Name it with your own name in CamelCase, like: <tt class="docutils literal"><span class="pre">ChrisBarker</span></tt>.</li>
 <li>In the folder create one new file, named <tt class="docutils literal"><span class="pre">README.md</span></tt></li>
 <li>In that new file, write up a few paragraphs about yourself.<ul>
-<li>Use proper <a class="reference external" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">markdown</a> syntax. (or <a class="reference external" href="http:rst_link">reStructuredText</a>)</li>
+<li>Use proper <a class="reference external" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">markdown</a> syntax. (or <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>)</li>
 <li>Include at least two headings, of different levels.</li>
 <li>Include at least one link.</li>
 </ul>
@@ -1390,7 +1419,8 @@ repository.</li>
 <p>Make sure you have the basics of command line usage down:</p>
 <p>Work through the supplemental tutorials on setting up your
 <a class="reference external" href="supplements/shell.html">Command Line</a> for good development support.</p>
-<p>MAke sure you&#8217;ve got your editor set up productively &#8211; at the very very least, make sure it does Python indentation well.</p>
+<p>Make sure you&#8217;ve got your editor set up productively &#8211; at the very very least, make sure it does Python indentation well.</p>
+<p><strong>Advanced Editor Setup:</strong></p>
 <p>If you are using SublimeText, here are some notes to make it super-nifty:</p>
 <p>Setting up <a class="reference external" href="supplements/sublime_as_ide.html">SublimeText</a> .</p>
 <p>At the end, your editor should support tab completion and pep8 and pyflakes
@@ -1419,31 +1449,38 @@ be answered.</p>
 <div class="section" id="task-4">
 <h3>Task 4<a class="headerlink" href="#task-4" title="Permalink to this headline">¶</a></h3>
 <p><strong>Explore Errors</strong></p>
-<ul class="simple">
-<li>Make a branch of your clone of the class repository called <tt class="docutils literal"><span class="pre">errors</span></tt>
-* <tt class="docutils literal"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">errors</span></tt>
-* <tt class="docutils literal"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">-u</span> <span class="pre">origin</span> <span class="pre">errors</span></tt></li>
-<li>Create a new file called <tt class="docutils literal"><span class="pre">break_me.py</span></tt>.<ul>
-<li>Create it inside your personal folder in the <tt class="docutils literal"><span class="pre">students</span></tt> folder of the
-class repository</li>
-<li>Make sure you create it in your clone of your fork of the repository.</li>
-<li>Use <tt class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></tt> to add the file to the repository.</li>
-</ul>
+<ul>
+<li><p class="first">Create a new directory in your personal folder in the <tt class="docutils literal"><span class="pre">students</span></tt> folder of the class repository:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ mkdir session01
+$ cd session01
+</pre></div>
+</div>
+</li>
+<li><p class="first">Make sure you create it in your clone of your fork of the repository.</p>
+</li>
+<li><p class="first">Add a new file to it called <tt class="docutils literal"><span class="pre">break_me.py</span></tt></p>
+</li>
+<li><p class="first">Use <tt class="docutils literal"><span class="pre">git</span> <span class="pre">add</span></tt> to add the file to the repository.</p>
 </li>
 </ul>
 <ul class="simple">
-<li>In the file write four simple Python functions<ul>
+<li>In the <tt class="docutils literal"><span class="pre">break_me.py</span></tt> file write four simple Python functions:<ul>
 <li>Each function, when called, should cause an exception to happen</li>
 <li>Each function should result in one of the four common exceptions from our
 lecture.<ul>
-<li>for review: NameError, TypeError, SyntaxError, AttributeError</li>
+<li>for review: <tt class="docutils literal"><span class="pre">NameError</span></tt>, <tt class="docutils literal"><span class="pre">TypeError</span></tt>, <tt class="docutils literal"><span class="pre">SyntaxError</span></tt>, <tt class="docutils literal"><span class="pre">AttributeError</span></tt></li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+<p>(hint &#8211; the interpreter will quit when it hits a Exception &#8211; so you can comment out all but the one you are testing at the moment)</p>
+<blockquote>
+<div><ul class="simple">
 <li>Use the Python standard library reference on <a class="reference external" href="https://docs.python.org/2/library/exceptions.html">Built In Exceptions</a> as a
 reference</li>
 </ul>
-</li>
-</ul>
+</div></blockquote>
 <ul class="simple">
 <li>Use <tt class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span></tt> to commit changes you make to your clone<ul>
 <li>Make frequent, small commits using <tt class="docutils literal"><span class="pre">git</span> <span class="pre">commit</span></tt> when working.</li>
