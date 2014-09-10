@@ -8,10 +8,12 @@ names("Linda")
 
 
 #TypeError################
+#Cannot combine int and string, causing Type Error
 def types(a, b):
-    pass
+    if a < b:
+        return a + b
 
-types()
+types(7, "Fred")
 
 
 #SyntaxError###############
