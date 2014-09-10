@@ -19,4 +19,9 @@ After high school, I went off to college torn between majoring in Art and majori
 
 The irony was that as I began to immerse myself in the photographic arts I became nearly fanatical about the science of it all. I even began building my own cameras, making my own film and mixing my own chemicals that I was sourcing from all over the country. Also during this time, I began to write websites for myself and fellow students. I picked up some HTML books and went crazy. It seemed so powerful and exhilarating to be able to write an entire web page that could be seen by anyone *anywhere* in the world!
 
-After college I stayed at my current job in a local restaurant. Eventually I was promoted to the resturant manager. I definitely built an appreciation for the art of cuisine, wine and the relationships that are created around meals. I fell in love with the importance of the details. In a sense, I was helping to build the guest experience with the details that we put into the evening. We were creating an experience for someone. It wasn't just an art, it was a science.
+After college I stayed at my current job in a local restaurant. Eventually I was promoted to the restaurant manager. I definitely built an appreciation for the art of cuisine, wine and the relationships that are created around meals. I fell in love with the importance of the details. In a sense, I was helping to build the guest experience with the details that we put into the evening. We were creating an experience for someone. It wasn't just an art, it was a science.
+
+I've come to not only enjoy, but thrive within the dichotomy of art and science. To me, it's an area of function and beauty combined and it seems under-appreciated and often overlooked.
+
+
+##Follow my code on [Git Hub](http://github.com/jwarren116).
