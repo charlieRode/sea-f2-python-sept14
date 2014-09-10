@@ -17,10 +17,12 @@ types(7, "Fred")
 
 
 #SyntaxError###############
+#"is ==" is invalid, causing Syntax Error (remove "is" to fix)
 def syntax(n):
-    pass
+    if n is == "John":
+        return True
 
-syntax()
+syntax("Joe")
 
 
 #AttributeError#############
