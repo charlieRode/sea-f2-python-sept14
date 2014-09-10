@@ -26,7 +26,8 @@ syntax("Joe")
 
 
 #AttributeError#############
+#int does not have .lower() property, causing Attribute Error
 def attributes(k):
-    pass
+    return k.lower()
 
-attributes()
+attributes(17)
