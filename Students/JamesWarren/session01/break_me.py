@@ -1,8 +1,10 @@
 #NameError################
+#Mary is undefined, causing Name Error (to fix, turn Mary into string)
 def names(name):
-    pass
+    if name == Mary:
+        print "Hi Mary!"
 
-names()
+names("Linda")
 
 
 #TypeError################
