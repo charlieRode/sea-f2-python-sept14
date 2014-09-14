@@ -15,7 +15,12 @@ def lucas(nth):
         return lucas(nth - 1) + lucas(nth - 2)
 
 if __name__ == "__main__":
+    #Tests Fibonacci function to ensure accuracy in computations
     assert fibonacci(1) == 0
     assert fibonacci(5) == 3
     assert fibonacci(13) == 144
+    #Tests Lucas function to ensure accuracy in computations
+    assert lucas(1) == 2
+    assert lucas(5) == 7
+    assert lucas(11) == 123
     print "All tests pass."
