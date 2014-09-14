@@ -14,6 +14,14 @@ def lucas(nth):
     else:
         return lucas(nth - 1) + lucas(nth - 2)
 
+def sum_series(x, fib1=0, fib2=1):
+    """Compute Lucas's number if secondary and tertiary arguments are given (2,1), otherwise computes Fibonacci's number from input value."""
+    if fib1 == 2: pass
+    if fib2 == 1: pass
+    else:
+        return sum_series(x - 1) + sum_series(x - 2)
+
+
 if __name__ == "__main__":
     #Tests Fibonacci function to ensure accuracy in computations
     assert fibonacci(1) == 0
