@@ -1,5 +1,6 @@
 def fibonacci(n):
     """Compute Fibonacci's number from input value."""
+    #0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89...
     if n == 1 or n == 2:
         return n - 1
     else:
@@ -7,6 +8,7 @@ def fibonacci(n):
 
 def lucas(nth):
     """Compute Lucas's number from input value."""
+    #2, 1, 3, 4, 7, 11, 18, 29, 47, 76...
     if nth == 1:
         return nth + 1
     if nth == 2:
@@ -15,9 +17,11 @@ def lucas(nth):
         return lucas(nth - 1) + lucas(nth - 2)
 
 def sum_series(x, fib1=0, fib2=1):
-    """Compute Lucas's number if secondary and tertiary arguments are given (2,1), otherwise computes Fibonacci's number from input value."""
-    if fib1 == 2: pass
-    if fib2 == 1: pass
+    """Compute value (X,y,z) in sum series with designated starting numbers (x,Y,Z)."""
+    ###FIX ME
+    if x == 1: return fib1
+    elif x == 2: return fib2
+    ###
     else:
         return sum_series(x - 1) + sum_series(x - 2)
 
