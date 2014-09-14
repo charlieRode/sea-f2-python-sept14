@@ -4,3 +4,9 @@ def fibonacci(n):
         return n - 1
     else:
         return fibonacci(n - 1) + fibonacci(n - 2)
+
+if __name__ == "__main__":
+    assert fibonacci(1) == 0
+    assert fibonacci(5) == 3
+    assert fibonacci(13) == 144
+    print "All tests pass."
