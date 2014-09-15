@@ -1,4 +1,5 @@
 def ack(m,n):
+	"""Computes the Ackerman algorithm for ack(m,n)"""
     if m < 0 or n < 0:
     	return None
     if m == 0:
