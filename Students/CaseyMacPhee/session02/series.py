@@ -32,7 +32,7 @@ def sum_series(n, first=0, second=1):
 	elif n == 2:
 		return second
 	else: 
-		return sum_series(n-1) + sum_series(n-2)
+		return sum_series(n-1, first, second) + sum_series(n-2, first, second)
 
 
 assert fibonacci(3) == 2
