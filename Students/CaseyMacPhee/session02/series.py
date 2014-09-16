@@ -34,18 +34,18 @@ def sum_series(n, first=0, second=1):
 	else: 
 		return sum_series(n-1, first, second) + sum_series(n-2, first, second)
 
+if __name__ == '__main__':
+	assert fibonacci(3) == 2
+	assert fibonacci(4) == 3
+	assert fibonacci(5) == 5
 
-assert fibonacci(3) == 2
-assert fibonacci(4) == 3
-assert fibonacci(5) == 5
+	assert lucas(3) == 3
+	assert lucas(4) == 4
+	assert lucas(5) == 7
 
-assert lucas(3) == 3
-assert lucas(4) == 4
-assert lucas(5) == 7
-
-print sum_series(7, 2, 1)
-print lucas(7)
-print fibonacci(7)
+	print sum_series(7, 2, 1)
+	print lucas(7)
+	print fibonacci(7)
 
 
 	
