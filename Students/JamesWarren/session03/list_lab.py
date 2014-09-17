@@ -1,21 +1,26 @@
 #!/usr/env/python
 
 fruits = ["Apples", "Pears", "Oranges", "Peaches"]
-
 print fruits
 
-#Ask user for fruit to append to list
-
-#Display new list
+fruits.append(raw_input("What fruit would you like to add to the list? > "))
+print fruits
 
 #Ask user for number, return number and fruit at coresponding index
+add_fruit = int(raw_input("Please enter a number. > "))
+print "You entered: %i, %s" % (add_fruit, fruits[add_fruit-1])
 
 #Add another fruit to beginning of list using +, then print list
+fruits = fruits + raw_input("Please enter a fruit to add to the list. > ")
+print fruits
 
 #Add another fruit to the beginning of the list using insert(), then print list
+fruits.insert(0, raw_input("Please enter a fruit to add to the list. > "))
+print fruits
 
 #Display all fruits that begin with P using a for loop
-
+for fruit in fruits:
+    pass
 
 
 #Using list above:
