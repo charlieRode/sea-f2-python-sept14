@@ -21,16 +21,14 @@ for fruit in fruits:
 print fruits
 print "I don't like %s." % fruits.pop(-1)
 print fruits
-#fruits.remove(raw_input("What fruit would you like to remove? > "))
-#print fruits
 
-#Bonus: Multiply list times two, Keep asking until match is found. Once found, delete all occurances
 fruits = fruits * 2
+print fruits
 user_inp = raw_input("What fruit would you like to remove all of? > ")
 while user_inp not in fruits:
     print "That fruit is not in the list."
     user_inp = raw_input("What fruit would you like to remove all of? > ")
-for f in fruits:
+while user_inp in fruits:
     fruits.remove(user_inp)
 print fruits
 
@@ -48,14 +46,11 @@ elif user_inp.lower() == "yes":
 
 #PART 4
 print fruits
-
-#Copy the list and reverse the letters in each fruit in the copy
-fruits_copy = fruits[:]
-#FIX ME
-for fruit in fruits_copy:
-    fruit = fruit[::-1]
-#FIX ME
+fruits_copy = []
+for fruit in fruits:
+    f = fruit[::-1]
+    fruits_copy.append(f)
 
 fruits.pop(-1)
-print fruits
-print fruits_copy
+print "Original fruits: %s" % fruits
+print "Fruits copy: %s" % fruits_copy
