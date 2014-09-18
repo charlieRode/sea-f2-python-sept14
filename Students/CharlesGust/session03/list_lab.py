@@ -1,5 +1,5 @@
 def series1(alist):
-    # print lists from session03, series 1
+    """ print fruit lists and searches from session03, series 1 """
     alist = ["Apples", "Pears", "Oranges", "Peaches"]
     print alist
 
@@ -25,6 +25,8 @@ def series1(alist):
 
 
 def series2(alist):
+    """ print fruit lists and simple list manipulation from session03, series2 """
+
     s2_list = alist[:]
     print s2_list
 
@@ -36,8 +38,16 @@ def series2(alist):
         if fruit == fruit_to_delete:
             s2_list.remove(fruit_to_delete)
 
+    """ the instructions do not say to print the list at this time but it would
+        be senseless to perform the list manipulation and not display that it
+        occurred
+        """
+    print s2_list
+    return s2_list
+
 
 def series2a(alist):
+    """ print fruit lists and delete multiple occurences without 'set' """
     s2_list = alist[:]
     s2_list *= 2
     print s2_list
@@ -56,6 +66,7 @@ def series2a(alist):
 
 
 def series3(alist):
+    """ print fruit list after asking user if they like each fruit and delete the ones not liked in seesion03, series3"""
     new_list = []
     for fruit in alist:
         ask_like = True
@@ -71,7 +82,26 @@ def series3(alist):
 
 
 def series4(alist):
-    pass
+    """ print fruit lists after reversing characters and removing first element from original """
+    alist_copy = []
+    for fruit in alist:
+        """ using selector [::-1] to reverse a string was shown in class """
+        alist_copy.append(fruit[::-1])
+
+    """ instructions say to "Delete last item of the original list"
+        but are ambiguous as to whether this item should be deleted
+        from the original list, or the copy with reversed letters, so
+        this ambiguity is resolved in favor of manipulating the original
+        list. If the other meaning is intended, the clause "in the copy"
+        should be added after the instruction.
+    """
+    alist_original = alist[:-1]
+
+    """ instructions say to "Display the original list" but both lists
+        have in fact been modified and neither is original.
+    """
+    print alist_original
+    print alist_copy
 
 
 if __name__ == "__main__":
@@ -81,5 +111,3 @@ if __name__ == "__main__":
     series2a(alist)
     series3(alist)
     series4(alist)
-
-
