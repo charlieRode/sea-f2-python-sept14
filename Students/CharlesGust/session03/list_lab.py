@@ -25,18 +25,18 @@ def series1(alist):
 
 
 def series2(alist):
-    for i in range(0, len(alist)):
+    new_list = []
+    for fruit in alist:
         ask_like = True
         while ask_like:
-            like_fruit = raw_input("Do you like %s?" % alist[i].lower())
+            like_fruit = raw_input("Do you like %s?" % fruit.lower())
             if like_fruit == "no":
                 ask_like = False
-
-                alist = alist[:i] + alist[i+1:]
             elif like_fruit == "yes":
+                new_list.append(fruit)
                 ask_like = False
-    print alist
-    return alist
+    print new_list
+    return new_list
 
 if __name__ == "__main__":
     alist = []
