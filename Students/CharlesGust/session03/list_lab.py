@@ -25,11 +25,42 @@ def series1(alist):
 
 
 def series2(alist):
+    s2_list = alist[:]
+    print s2_list
+
+    s2_list = s2_list[:-1]
+    print s2_list
+
+    fruit_to_delete = raw_input("Fruit to delete?")
+    for fruit in s2_list:
+        if fruit == fruit_to_delete:
+            s2_list.remove(fruit_to_delete)
+
+
+def series2a(alist):
+    s2_list = alist[:]
+    s2_list *= 2
+    print s2_list
+
+    s2_list_static = s2_list[:]
+    ask_delete = True
+    while ask_delete:
+        fruit_to_delete = raw_input("Fruit to delete?")
+
+        for fruit in s2_list_static:
+            if fruit == fruit_to_delete:
+                ask_delete = False
+                s2_list.remove(fruit_to_delete)
+    print s2_list
+    return s2_list
+
+
+def series3(alist):
     new_list = []
     for fruit in alist:
         ask_like = True
         while ask_like:
-            like_fruit = raw_input("Do you like %s?" % fruit.lower())
+            like_fruit = raw_input("Do you like %s? (yes/no):" % fruit.lower())
             if like_fruit == "no":
                 ask_like = False
             elif like_fruit == "yes":
@@ -38,9 +69,17 @@ def series2(alist):
     print new_list
     return new_list
 
+
+def series4(alist):
+    pass
+
+
 if __name__ == "__main__":
     alist = []
     alist = series1(alist)
-    alist = series2(alist)
+    series2(alist)
+    series2a(alist)
+    series3(alist)
+    series4(alist)
 
 
