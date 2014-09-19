@@ -5,12 +5,13 @@ def rot13(string):
     upper_place = []
     for i in range(len(string)):
         if string[i].isupper(): upper_place.append(i)
-    result = ""
+    result = []
     for c in string.lower():
         if c in letters:
-            result += letters[letters.index(c) + 13]
+            result.append(letters[letters.index(c) + 13])
         else:
-            result += c
+            result.append(c)
+    result ="".join(result)
     for x in upper_place:
         result = capitalize_nth(result, x)
     return result
