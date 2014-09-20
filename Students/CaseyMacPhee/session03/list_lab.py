@@ -1,3 +1,5 @@
+#!/usr/env/python
+
 x = ['Apples','Pears','Oranges', 'Peaches']
 print x
 y = raw_input("Add another fruit?\n: ")

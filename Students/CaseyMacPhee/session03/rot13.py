@@ -18,4 +18,8 @@ def rot13(str):
         else:
             encryptedtxt += temp
     return encryptedtxt
-
+if __name__ == '__main__':
+    assert rot13('Hello') == 'Uryyb'
+    x = 'This is a string with spaces, and punctuation.'
+    assert rot13(x) == 'Guvf vf n fgevat jvgu fcnprf, naq chapghngvba.'
+    print 'running'
