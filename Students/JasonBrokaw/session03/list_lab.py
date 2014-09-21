@@ -59,3 +59,19 @@ while True:
 
 print fruits2
 
+# SERIES 3
+print "BEGINNING SERIES 3"
+
+fruits3 = fruits[:]
+
+print fruits3
+
+for fruit in fruits3[:]:
+    like = raw_input(u"Do you like %s (yes/no)? " % fruit.lower()).lower()
+    while (like != "yes") and (like != "no"):
+        print u"Please type 'yes' or 'no'"
+        like = raw_input(u"Do you like %s (yes/no)? " % fruit.lower()).lower()
+    if like == u"no":
+        fruits3.remove(fruit)
+
+print fruits3
