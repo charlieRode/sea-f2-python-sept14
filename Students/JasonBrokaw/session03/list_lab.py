@@ -1,5 +1,7 @@
 #!/usr/local/bin/python
 
+
+# SERIES 1
 fruits = [u"Apples", u"Pears", u"Oranges", u"Peaches"]
 
 print fruits
@@ -25,3 +27,19 @@ print fruits
 for fruit in fruits:
     if fruit[0] == "P":
         print fruit
+
+# SERIES 2
+print "BEGINNING SERIES 2"
+fruits2 = fruits[:]
+
+print fruits2
+
+fruits2.pop()
+
+print fruits2
+
+fruit_to_delete = raw_input(u"Type a fruit to delete from the list: ")
+
+fruits2.remove(fruit_to_delete)
+
+print fruits2
