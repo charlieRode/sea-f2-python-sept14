@@ -33,3 +33,28 @@ for key in biography:
 
 print biography, biography_acount
 
+# Part 4
+s2, s3, s4 = set(), set(), set()
+
+for i in range(21):
+    if i % 4 == 0:
+        s2.add(i)
+        s4.add(i)
+    elif i % 2 == 0:
+        s2.add(i)
+    if i % 3 == 0:
+        s3.add(i)
+
+print s2, s3, s4
+print s3.issubset(s2)
+print s4.issubset(s2)
+
+# Part 5
+pyset = set(u"Python")
+pyset.add(u'i')
+print pyset
+
+frozenmarathon = frozenset(u"marathon")
+print frozenmarathon
+print frozenmarathon.union(pyset)
+print frozenmarathon.intersection(pyset)
