@@ -1,3 +1,5 @@
+#!/usr/env/python
+
 import random
 import pprint
 
