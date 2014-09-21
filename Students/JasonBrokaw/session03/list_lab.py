@@ -75,3 +75,19 @@ for fruit in fruits3[:]:
         fruits3.remove(fruit)
 
 print fruits3
+
+# SERIES 4
+print "BEGINNING SERIES 4"
+
+fruits4 = fruits[:] #I'm just considering fruits to be the original list here
+
+i = 0
+for fruit in fruits4[:]:
+    list_fruit = list(fruit)
+    list_fruit.reverse()
+    fruits4[i] = u"".join(list_fruit)
+    i = i + 1
+
+fruits.pop()
+
+print fruits, fruits4
