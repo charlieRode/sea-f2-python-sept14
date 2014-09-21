@@ -1,49 +1,56 @@
 #!/usr/env/python
 
+#PART 1
 fruits = ["Apples", "Pears", "Oranges", "Peaches"]
+print fruits
+fruits.append(raw_input("What fruit would you like to add to the list? > "))
+print fruits
+add_fruit = int(raw_input("Please enter a number. > "))
+print "You entered: %i, %s" % (add_fruit, fruits[add_fruit-1])
+add_fruit = [raw_input("Please enter a fruit to add to the list. > ")]
+fruits = fruits + add_fruit
+print fruits
+fruits.insert(0, raw_input("Please enter a fruit to add to the list. > "))
+print fruits
+print "These fruits start with 'P'"
+for fruit in fruits:
+    if fruit[0] == "P":
+        print fruit
 
+#PART 2
+print fruits
+print "I don't like %s." % fruits.pop(-1)
 print fruits
 
-#Ask user for fruit to append to list
+fruits = fruits * 2
+print fruits
+user_inp = raw_input("What fruit would you like to remove all of? > ")
+while user_inp not in fruits:
+    print "That fruit is not in the list."
+    user_inp = raw_input("What fruit would you like to remove all of? > ")
+while user_inp in fruits:
+    fruits.remove(user_inp)
+print fruits
 
-#Display new list
+#PART 3
+user_inp = raw_input("Do you like %s? > " % fruits[-1])
+for fruit in range(len(fruits)):
+    fruits[fruit] = fruits[fruit].lower()
+while user_inp.lower() != "no" and user_inp.lower() != "yes":
+    print "%s is an invalid answer." % user_inp
+    user_inp = raw_input("Do you like %s? > " % fruits[-1])
+if user_inp.lower() == "no":
+    fruits.pop(-1)
+elif user_inp.lower() == "yes":
+    pass
 
-#Ask user for number, return number and fruit at coresponding index
+#PART 4
+print fruits
+fruits_copy = []
+for fruit in fruits:
+    f = fruit[::-1]
+    fruits_copy.append(f)
 
-#Add another fruit to beginning of list using +, then print list
-
-#Add another fruit to the beginning of the list using insert(), then print list
-
-#Display all fruits that begin with P using a for loop
-
-
-
-#Using list above:
-
-#Display list
-
-#Remove last fruit from list
-
-#Display new list
-
-#Ask user for a fruit to delete
-
-#Bonus: Multiply list times two, Keep asking until match is found. Once found, delete all occurances
-
-
-
-#Ask user input displaying line like "Do you like apples?"
-
-#For each fruit in the list, make all lowercase
-
-#For each "no", delete that fruit from list
-
-#For any answer other than yes or no, prompt user to answer with yes or no (while loop here)
-
-#Display the list
-
-
-
-#Copy the list and reverse the letters in each fruit in the copy
-
-#Delete the last item from the original list. Display the original list and copy.
+fruits.pop(-1)
+print "Original fruits: %s" % fruits
+print "Fruits copy: %s" % fruits_copy
