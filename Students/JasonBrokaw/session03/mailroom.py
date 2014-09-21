@@ -16,10 +16,16 @@ def initial_prompt():
     for index in option_indexes:
         print u"%i) %s" % (index, options[i])
         i = i + 1
-    selection = int(raw_input(u"Enter the number of your selection: "))
-    while selection not in option_indexes:
+    while True:
+        try:
+            selection = int(raw_input(u"Enter the number of your selection: "))
+            break
+        except ValueError:
+            print u"I didn't understand that, please enter a number"
+
+    if selection not in option_indexes:
         print u"Invalid selection\n\a"
-        selection = int(raw_input(u"Enter the number of your selection: "))
+        selection = initial_prompt()
     return selection
 
 def list_donors():
@@ -62,16 +68,26 @@ def send_thankyou():
             donation = raw_input(u"Enter the donation amount: ")
 
     selected_record[1].append(donation)
+
+    print u"\n\n\n"
     print u"Dear %s:" % selected_record[0]
     print u"Thank you so much for your recent donation of $%.2f. This means so" % selected_record[1][-1]
     print u"much to the little orphaned children of Mr. Boddy, who recently perished"
     print u"in his own mansion under mysterious circumstances."
     print u"Sincerely,"
     print u"Orphan Relief International"
-    print u"\n\n\n\n\n"
+    print u"\n\n\n"
 
 def create_report():
-    print donor_history
+    print u"\n\n\n"
+    donor_history.sort(key=lambda record: sum(record[1]))
+    print u"%-20s%12s%8s%12s" % (u"Name", u"Total", u"No.", u"Avg.")
+    for record in donor_history:
+        total = sum(record[1])
+        no = len(record[1])
+        avg = float(total) / float(no)
+        print u"%-20s%12.2f%8d%12.2f" % (record[0], total, no, avg)
+    print u"\n\n\n"
 
 if __name__ == '__main__':
     user_selection = initial_prompt()
