@@ -11,31 +11,67 @@ options = [u"Send a Thank You", u"Create a Report", u"Exit"]
 
 def initial_prompt():
     """Return an int representing the user's selection among the options"""
-    print "Please select from the following options: "
+    print u"Please select from the following options: "
     i = 0
     for index in option_indexes:
-        print "%i) %s" % (index, options[i])
+        print u"%i) %s" % (index, options[i])
         i = i + 1
-    selection = int(raw_input("Enter the number of your selection: "))
+    selection = int(raw_input(u"Enter the number of your selection: "))
     while selection not in option_indexes:
-        print "Invalid selection\n\a"
-        selection = int(raw_input("Enter the number of your selection: "))
+        print u"Invalid selection\n\a"
+        selection = int(raw_input(u"Enter the number of your selection: "))
     return selection
 
 def list_donors():
     """List full names of donors"""
-    print "We have records for the following donors"
+    print u"We have records for the following donors"
     for record in donor_history:
         print record[0]
 
 def send_thankyou():
     """Generate a thank you note for an individual donor"""
-    donor = raw_input("Enter the Full Name of the donor (or 'list' to list the donors): ")
-    if donor == "list":
+    donor = raw_input(u"Enter the Full Name of the donor (or 'list' to list the donors, 'quit' to return to the main menu): ")
+    if donor == u"list":
         list_donors()
+        send_thankyou() #YIKES NOT SUPER HAPPY ABOUT THIS
+        return
+    if donor == u"quit":
+        return
+
+    for record in donor_history:
+        if record[0] == donor:
+            selected_record = record
+            break
+    else:
+        selected_record = (donor, [])
+        donor_history.append(selected_record)
+
+    donation = raw_input(u"Enter the donation amount: ")
+
+    while True:
+        try:
+            fdonation = float(donation)
+            idonation = int(fdonation)
+            if fdonation == idonation:
+                donation = idonation
+            else:
+                donation = fdonation
+            break
+        except ValueError:
+            print u"I didn't understand that, please enter a number."
+            donation = raw_input(u"Enter the donation amount: ")
+
+    selected_record[1].append(donation)
+    print u"Dear %s:" % selected_record[0]
+    print u"Thank you so much for your recent donation of $%.2f. This means so" % selected_record[1][-1]
+    print u"much to the little orphaned children of Mr. Boddy, who recently perished"
+    print u"in his own mansion under mysterious circumstances."
+    print u"Sincerely,"
+    print u"Orphan Relief International"
+    print u"\n\n\n\n\n"
 
 def create_report():
-    pass
+    print donor_history
 
 if __name__ == '__main__':
     user_selection = initial_prompt()
