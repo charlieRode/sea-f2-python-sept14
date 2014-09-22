@@ -1,16 +1,18 @@
 #!/usr/bin/env python2.7
 
-donors = [
+#Unknown if separating string and text is simpler or not... Too tired to redo it.
+defaultdonors = [
 'Harry', [1000, 5000, 10000],
 'Franklin', [1000, 500, 750],
 'George', [950, 760],
 'Dwight', [1100, 3500],
 'Dean', [8000]
 ]
+
 #Mailroom Function
-def main_menu(donors=donors):
+def main_menu(donors=defaultdonors):
     action = 0
-    while (action != '1') or (action != '2') or (action != 'q'): #action not in ['1','2']
+    while action not in ['1', '2', '3']:  # Difference with following syntax? (action != '1') or (action != '2') or (action != 'q'):
         print '''
         Mailroom Menu:
         1. Send a Thank You
@@ -25,92 +27,100 @@ def main_menu(donors=donors):
             report(donors)
         elif action == 'q':
             break
-            #import sys
-            #sys.exit()
     return
 
-
-
-#Exit out of any point in script to mailroom menu
-#def main_exit(exit, donors):
-#    if exit == 'MM':
-#        main_menu(donors)
-#    return
-
-#Thank you letters for immediate donation
+#Thank you menu
 def thank_you(donors):
-        while True:
-            donation = ValueError #For first elif
+    while True:
 
-            thank = raw_input('Enter "list" for donors, donor name, or name to be added: ')
-            #main_exit(thank, donors)
+        thank = raw_input('Enter "list" for donors, donor name, or name to be added: ')
 
-            if thank == 'list':
-                print donors[::2]
-                continue
-                #x = 2
+        # Go back to Mailroom Menu
+        if thank == 'MM':
+            return main_menu(donors)
 
-            elif thank in donors[::2]: #If a valid name is entered
-                while donation == ValueError: #to verify an integer is being entered
-                    donation = raw_input("Please enter a valid donation amount ($): ")
-                    if thank == 'MM':
-                        return
-                    try:
-                        if int(donation): #Evaluates if donation is an integer. Goes to except if not.
-                            break #If donatio#n is an integer, it breaks from the while donation == ValueError loop
-                    except ValueError: #Overrides error
+        # List of donors enetered.
+        elif thank == 'list':
+            print donors[::2]
+            continue
+
+        # Enter donation for current donor.
+        elif thank in donors[::2]:
+            while True:
+                donation = raw_input("Please enter a valid donation amount for current donor ($): ")
+                if donation == 'MM':
+                    return main_menu(donors)
+                try:
+                    if int(donation): #Evaluates if donation is an integer. Goes to except if not.
+                        break
+                except ValueError: #Overrides error
+                    continue
+                    # .isdigit()
+            donorhistoryloc = 1 + donors.index(thank) #Find corresponding donation to name
+            donors[:][donorhistoryloc].append(int(donation)) #Add value in 'donation' to donor list
+            print '''
+            Thank you %s for you generous donation of $%i. Your ongoing support
+            is appreciated due to the costs incurred for procuring otoro. If you
+            continue to donate, we will consider taking you in a group to
+            experience otoro for yourself. Again, thank you and we hope you
+            have already found a way to incorporate otor in your daily life.
+            ''' % (thank, int(donation))
+            continue
+
+        #Entering a new donor (includes verification and donation).
+        else:
+            verify = 'a'
+            while verify not in ['n', 'y']:
+                if verify in ['n', 'y']:
+                    break
+                elif verify == 'MM':
+                    return main_menu(donors)
+                verify = raw_input('Add %s to the donor list (y, n)? ' % thank)
+            if verify == 'y':
+                donors = donors + [thank, []]
+                while True:
+                    donation = raw_input("Please enter a valid donation amount for new donor ($): ")
+                    if donation == 'MM':
+                        return main_menu(donors)
+                    try:  #Evaluates if donation is an integer. Goes to except if not.
+                        if int(donation):  # Try .isdigit()
+                            break
+                    except ValueError:  #Overrides ValueError and continues in loop.
                         continue
-                        # Goes back to while donation == ValueError
-                        # .isdigit()
-                donorhistoryloc = 1 + donors.index(thank) #FInds the index location of monetary list, which is one index after the name in the donors list
-                donors[:][donorhistoryloc].append(int(donation)) #Add value in 'donation' to list (in donor list) location referenced in obove line
+                donorhistoryloc = 1 + donors.index(thank)  #Find corresponding donation to name
+                donors[:][donorhistoryloc].append(int(donation))  #Add value in 'donation' to donor's list
                 print '''
-                Thank you %s for you generous donation of $%i. These funds will
-                provide George Nuesca with further chances to eat sushi,
-                especially otoro. Your donation will also help establish a fund to
-                bring additional guests to future otoro adventures. If you would
-                like to donate otoro directly, please contact our stockhouse.
+                Thank you %s for your first time generous donation of $%i. These
+                funds will provide George Nuesca with further chances to eat
+                sushi, especially otoro. Your donation will also help establish a
+                fund to bring additional guests to future otoro adventures. If you
+                would like to donate otoro directly, please contact our stockhouse.
                 We hope one day you too can enjoy otoro, possibly with us!
                 ''' % (thank, int(donation))
-                #Go back to the beginning of the while loop (x==1)
-                continue
+            elif verify == 'n':
+                None
+            continue
 
-            elif thank == 'MM':
-                return
-
-            else: #if any other string is entered, ask the user if they want to it to the donor list
-                verify = 'a'
-                while (verify != 'n') or (verify != 'y'): #While verify isn't 'y' or 'n', keeps asking
-                    if (verify == 'n') or (verify == 'y'):
-                        break
-                    elif verify == 'MM':
-                        return
-                    verify = raw_input('Add %s to the donor list (y, n)? ' % thank)
-                if verify == 'y':  #if yes, add the name and a blank list to the donor list
-                    donoradd = [thank, []]
-                    donors += donoradd
-                elif verify == 'n':
-                    None
-                continue
-
-#Create a Report
+#Create a report of donors
 def report(donors):
+    #Separate name from numbers, then recombine into list
     person = donors[::2]
     don = donors[1::2]
     for i in range(len(person)):
         don[i].insert(0, person[i])
     don.sort(key = len)
     don.reverse()
+    # Table formatting.
     print '{0:<20}     {1:^13}     {2:^19}     {3:^20}'.format('Name','Total Donated',
         'Number of Donations', 'Average per Donation')
     print '-' * 91
-    for i in range(len(don)):
-        name = tuple(don[i])
-        total = don[i]
-        total.pop(0)
-        print '{0:<20}     {1:^13}     {2:^19}     {3:^20}'.format(name[0],
-            sum(total), len(total), sum(total)/len(total))
-    return
+    # Calculate report.
+    for do in don:
+        name = do[0]
+        do.pop(0)
+        print '{0:<20}     {1:^13}     {2:^19}     {3:^20}'.format(name,
+            sum(do), len(do), sum(do)/len(do))
+    return main_menu(donors)
 
 if __name__ == '__main__':
     main_menu()
