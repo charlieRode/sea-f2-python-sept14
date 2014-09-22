@@ -1,4 +1,5 @@
 #!/usr/local/bin/python
+import io, textwrap
 
 donor_history = {u"Colonel Mustard": [100, 200, 300]}
 donor_history[u"Mrs. White"] = [50, 10.95]
@@ -8,7 +9,8 @@ donor_history["Miss Scarlet"] = [1000]
 def donorssort((i, donations)):
     return sum(donations)
 
-options = {1: u"Send a Thank You", 2: u"Create a Report", 3: u"Exit"}
+options = {1: u"Send a Thank You", 2: u"Create a Report", 4: u"Exit"}
+options[3] = u"Write a Full Set of Letters to Files"
 def optionsort((i, str)):
     return i
 
@@ -45,6 +47,13 @@ def list_donors():
     for key in donor_history:
         print key
 
+def generate_letter(donor, amount):
+    """Return a letter (string) given a dict containing a name and a donation"""
+    output = u"Dear {donor}:\n"
+    output = output + textwrap.fill("Thank you so much for your recent donation of ${donation:.2f}. This means so much to the little orphaned children of Mr. Boddy, who recently perished in his own mansion under mysterious circumstances.")
+    output = output + "\nSincerely,\nOrphan Relief International"
+    return output.format(donor=donor, donation=amount)
+
 def send_thankyou():
     """Generate a thank you note for an individual donor"""
     donor = safe_input(u"Enter the Full Name of the donor (or 'list' to list the donors, 'quit' to return to the main menu): ")
@@ -74,14 +83,8 @@ def send_thankyou():
             donation = safe_input(u"Enter the donation amount: ")
 
     donor_history[donor].append(donation)
-
     print u"\n\n\n"
-    print u"Dear %s:" % donor
-    print u"Thank you so much for your recent donation of $%.2f. This means so" % donor_history[donor][-1]
-    print u"much to the little orphaned children of Mr. Boddy, who recently perished"
-    print u"in his own mansion under mysterious circumstances."
-    print u"Sincerely,"
-    print u"Orphan Relief International"
+    print generate_letter(donor, donation)
     print u"\n\n\n"
 
 def create_report():
@@ -96,12 +99,17 @@ def create_report():
         print u"%-20s%12.2f%8d%12.2f" % (record[0], total, no, avg)
     print u"\n\n\n"
 
+def write_letters():
+    pass
+
 if __name__ == '__main__':
     user_selection = initial_prompt()
-    while user_selection != 3:
+    while user_selection != 4:
         if user_selection == 1:
             send_thankyou()
         if user_selection == 2:
             create_report()
+        if user_selection == 3:
+            write_letters()
         user_selection = initial_prompt()
 
