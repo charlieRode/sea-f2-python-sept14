@@ -15,7 +15,7 @@ base_list = base_text.split()
 
 trigrams = {} #Each key will be a pair of words, and the value will be a list of words that follow that pair
 
-key_length = 1
+key_length = 2
 
 for i in range(len(base_list) - key_length):
     key = " ".join(base_list[i:i+key_length])
