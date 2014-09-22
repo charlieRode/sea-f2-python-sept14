@@ -50,8 +50,8 @@ def list_donors():
 def generate_letter(donor, amount):
     """Return a letter (string) given a dict containing a name and a donation"""
     output = u"Dear {donor}:\n"
-    output = output + textwrap.fill("Thank you so much for your recent donation of ${donation:.2f}. This means so much to the little orphaned children of Mr. Boddy, who recently perished in his own mansion under mysterious circumstances.")
-    output = output + "\nSincerely,\nOrphan Relief International"
+    output = output + textwrap.fill(u"Thank you so much for your recent donation of ${donation:.2f}. This means so much to the little orphaned children of Mr. Boddy, who recently perished in his own mansion under mysterious circumstances.")
+    output = output + u"\nSincerely,\nOrphan Relief International"
     return output.format(donor=donor, donation=amount)
 
 def send_thankyou():
@@ -100,7 +100,13 @@ def create_report():
     print u"\n\n\n"
 
 def write_letters():
-    pass
+    filename_format = u"{name}_{num:03d}_thankyou.txt"
+    for key in donor_history:
+        for donation, i in zip(donor_history[key], range(len(donor_history[key]))):
+            letter_filename = filename_format.format(name=key, num=i+1)
+            letter_file = io.open(letter_filename, 'w')
+            letter_file.write(generate_letter(key, donation))
+            letter_file.close()
 
 if __name__ == '__main__':
     user_selection = initial_prompt()
