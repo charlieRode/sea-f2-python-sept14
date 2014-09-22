@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import sys
+import codecs
 
 
 donors = {u"Richard Sherman":[16,213,3],u"Kam Chancellor":[1000,2000,3000],
@@ -62,23 +63,37 @@ def CurrentDonor():
             CurrentDonor()
     
 
+
 def CreateReport():
     """Print list of donors, sorted by total historical donation amount"""
     print u" Name     | Total Donated |             # of Donations       | Average Donation"
     print u"=" * 75
     for a,b in donors.items():
+        Name = a
+        DonationSum = sum(b[:])
+        NumDonations = len(b[:])
+        Average = DonationSum / NumDonations
+        indent1 = u" " * (32 - (len(Name) + len(str(DonationSum))))
+        indent2 = u" " * (42 - (len(Name) + len(indent1) + len(str(DonationSum))))
+        indent3 = u" " * (65 - (len(Name) + len(indent1) + len(str(DonationSum)) + \
+                            len(indent2) + len(str(NumDonations)) + len(str(Average))))
+        print Name, indent1, DonationSum, indent2, NumDonations, indent3, Average
+        print u"=" * 75
+
+
+def CreateFile():
+    """This function will create a file in the local directory for thanking each donor for his/her donation"""
+    for a,b in donors.items():
         name = a
         donationsum = sum(b[:])
-        numdonations = len(b[:])
-        average = donationsum / numdonations
-        indent1 = u" " * (32 - (len(name) + len(str(sum))))
-        indent2 = u" " * (42 - (len(name) + len(indent1) + len(str(donationsum))))
-        indent3 = u" " * (65 - (len(name) + len(indent1) + len(str(donationsum)) + \
-                            len(indent2) + len(str(numdonations)) + len(str(average))))
-        print name, indent1, donationsum, indent2, numdonations, indent3, average
-        print u"=" * 75
+        thanksfilecontent = "Thank you, " + name + " for your kind contributions of " + str(donationsum) + " dollars, you are an incredible person and a great player, Go Hawks!"
+        filename = (u"{name}.txt").format(name=name)
+        f = codecs.open(filename, 'w')
+        f.writelines(thanksfilecontent)
+        f.close()
 
    
 
 if __name__ == "__main__":
+    CreateFile()
     SelectTask()
