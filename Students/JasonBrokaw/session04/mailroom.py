@@ -9,6 +9,14 @@ donor_history.append((u"Miss Scarlet", [1000]))
 option_indexes = [1, 2, 3]
 options = [u"Send a Thank You", u"Create a Report", u"Exit"]
 
+def safe_input(prompt_string):
+    """Returns user input, None if ^C or ^D"""
+    try:
+        response = raw_input(prompt_string)
+    except (KeyboardInterrupt, EOFError):
+        response = None
+    return response
+
 def initial_prompt():
     """Return an int representing the user's selection among the options"""
     print u"Please select from the following options: "
@@ -18,9 +26,9 @@ def initial_prompt():
         i = i + 1
     while True:
         try:
-            selection = int(raw_input(u"Enter the number of your selection: "))
+            selection = int(safe_input(u"Enter the number of your selection: "))
             break
-        except ValueError:
+        except (ValueError, TypeError):
             print u"I didn't understand that, please enter a number"
 
     if selection not in option_indexes:
@@ -36,7 +44,7 @@ def list_donors():
 
 def send_thankyou():
     """Generate a thank you note for an individual donor"""
-    donor = raw_input(u"Enter the Full Name of the donor (or 'list' to list the donors, 'quit' to return to the main menu): ")
+    donor = safe_input(u"Enter the Full Name of the donor (or 'list' to list the donors, 'quit' to return to the main menu): ")
     if donor == u"list":
         list_donors()
         send_thankyou() #YIKES NOT SUPER HAPPY ABOUT THIS
@@ -52,7 +60,7 @@ def send_thankyou():
         selected_record = (donor, [])
         donor_history.append(selected_record)
 
-    donation = raw_input(u"Enter the donation amount: ")
+    donation = safe_input(u"Enter the donation amount: ")
 
     while True:
         try:
@@ -65,7 +73,7 @@ def send_thankyou():
             break
         except ValueError:
             print u"I didn't understand that, please enter a number."
-            donation = raw_input(u"Enter the donation amount: ")
+            donation = safe_input(u"Enter the donation amount: ")
 
     selected_record[1].append(donation)
 
