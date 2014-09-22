@@ -8,6 +8,16 @@ dreamDonors = {'Bill Gates':[random.randint(500000, 1000000)],\
       [random.randint(500000, 1000000), random.randint(500000, 1000000), random.randint(500000, 1000000)], 'Nathan Myhrvold':\
       [random.randint(500000, 1000000), random.randint(500000, 1000000)]}
 
+def safe_input(inputphrase):
+    useroutput = ""
+    try:
+        useroutput = raw_input(inputphrase)
+    except EOFError:
+        useroutput = None
+    except KeyboardInterrupt:
+        useroutput = None
+
+    return useroutput
 
 def mainPrompt():
     """Prints the main prompt"""
@@ -17,23 +27,29 @@ def mainPrompt():
         -type 's' to send a thank you
         -type 'q' to quit \n: """
 
-    userresponse = raw_input(s)
+    userresponse = safe_input(s)
     while userresponse != 'p' and userresponse != 's' and userresponse != 'q':
-        userresponse = raw_input("Please type either p', 's', or 'q'")
+        userresponse = safe_input("Please type either p', 's', or 'q'")
+
 
     return userresponse
 
 
 def donor():
-    donorName = raw_input("Would you like a list of current donors? (type 'list') or...\n\
-    Enter a new donor name (full name) \n: ")
+    prompt = "Would you like a list of current donors? (type 'list') or...\n\
+    Enter a new donor name (full name) \n: "
+
+    donorName = safe_input(prompt)
+    
+    while not donorName.isalpha():
+        donorName = safe_input(prompt)
     if donorName == 'list':
         pp = pprint.PrettyPrinter(indent=4)
         pp.pprint(dreamDonors.keys())
     else:
-        amount = raw_input("And for what amount?\n: ")
+        amount = safe_input("And for what amount?\n: ")
         while not amount.isalnum():
-            amount = raw_input("Please enter a number value")
+            amount = safe_input("Please enter a number value")
         
         donation = int(amount)
         inlist = False
@@ -45,8 +61,7 @@ def donor():
         if inlist == False:
             dreamDonors[donorName] = [donation]
 
-        answer = raw_input("Would you like to print a thank you? (type 'y' for yes or 'n' for no)\n: ")
-        
+        answer = safe_input("Would you like to print a thank you? (type 'y' for yes or 'n' for no)\n: ")
         if  answer == 'y':
             printThankYou(donorName, donation)
 
