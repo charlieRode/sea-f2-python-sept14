@@ -9,10 +9,7 @@ donor_history["Miss Scarlet"] = [1000]
 def donorssort((i, donations)):
     return sum(donations)
 
-options = {1: u"Send a Thank You", 2: u"Create a Report", 4: u"Exit"}
-options[3] = u"Write a Full Set of Letters to Files"
-def optionsort((i, str)):
-    return i
+
 
 def safe_input(prompt_string):
     """Returns user input, None if ^C or ^D"""
@@ -21,25 +18,6 @@ def safe_input(prompt_string):
     except (KeyboardInterrupt, EOFError):
         response = None
     return response
-
-def initial_prompt():
-    """Return an int representing the user's selection among the options"""
-    print u"Please select from the following options: "
-    option_list = options.items()
-    option_list.sort(key=optionsort)
-    for index, desc in option_list:
-        print u"%i) %s" % (index, desc)
-    while True:
-        try:
-            selection = int(safe_input(u"Enter the number of your selection: "))
-            break
-        except (ValueError, TypeError):
-            print u"I didn't understand that, please enter a number"
-
-    if selection not in options:
-        print u"Invalid selection\n\a"
-        selection = initial_prompt()
-    return selection
 
 def list_donors():
     """List full names of donors"""
@@ -103,19 +81,40 @@ def write_letters():
     filename_format = u"{name}_{num:03d}_thankyou.txt"
     for key in donor_history:
         for donation, i in zip(donor_history[key], range(len(donor_history[key]))):
-            letter_filename = filename_format.format(name=key, num=i+1)
+            letter_filename = filename_format.format(name=key.replace(' ', '_'), num=i+1)
             letter_file = io.open(letter_filename, 'w')
             letter_file.write(generate_letter(key, donation))
             letter_file.close()
 
+
+
+options = {1: (u"Send a Thank You", send_thankyou), 2: (u"Create a Report", create_report), 10: (u"Exit",u"quit")}
+options[3] = (u"Write a Full Set of Letters to Files", write_letters)
+def optionsort((i, str)):
+    return i
+
+def initial_prompt():
+    """Return an int representing the user's selection among the options"""
+    print u"Please select from the following options: "
+    option_list = options.items()
+    option_list.sort(key=optionsort)
+    for index, desc in option_list:
+        print u"%i) %s" % (index, desc[0])
+    while True:
+        try:
+            selection = int(safe_input(u"Enter the number of your selection: "))
+            break
+        except (ValueError, TypeError):
+            print u"I didn't understand that, please enter a number"
+
+    if selection not in options:
+        print u"Invalid selection\n\a"
+        selection = initial_prompt()
+    return selection
+
 if __name__ == '__main__':
     user_selection = initial_prompt()
-    while user_selection != 4:
-        if user_selection == 1:
-            send_thankyou()
-        if user_selection == 2:
-            create_report()
-        if user_selection == 3:
-            write_letters()
+    while options[user_selection][1] != 'quit':
+        options[user_selection][1]()
         user_selection = initial_prompt()
 
