@@ -3,10 +3,8 @@ import sys
 
 
 
-def fruitfun():
+def fruitfun(Fruits):
     """Execute Series 1"""
-    global Fruits
-    Fruits = ["Apples", "Pears", "Oranges", "Peaches"]
     print Fruits
     newfruit1 = raw_input('Add New Fruit :')
     Fruits.append(newfruit1)
@@ -21,22 +19,24 @@ def fruitfun():
             print Fruits[i]
     return Fruits
 
-def fruitfun2():
+def fruitfun2(Fruits):
     """Execute Series 2"""
-    Fruits2 = Fruits
+    Fruits2 = Fruits[:]
     print "Begin Series 2" 
     print Fruits2
     Fruits2.pop()
-    print Fruits
+    print Fruits2
     removefruit = raw_input('Remove Fruit :')
     Fruits2.remove(removefruit)
     print Fruits2
+    return Fruits2
 
 
-def fruitfun3():
+def fruitfun3(Fruits):
     """Execute Series 3"""
     Fruits3 = Fruits[:]
     print "Begin Series 3"
+    print Fruits3
     for i in Fruits3 :
         likefruit = raw_input("Do you like %s? :"%i.lower())
         while likefruit != u"yes" and likefruit !=u"no" :
@@ -45,21 +45,25 @@ def fruitfun3():
         if likefruit == u"no" :
             Fruits3.remove(i)
     print Fruits3
+    return Fruits3
 
     
-def fruitfun4():
+def fruitfun4(Fruits):
     """Execute Series 4"""
     Fruits4 = Fruits[:]
     print "Begin Series 4"
     for i in range(len(Fruits4)):
         Fruits4[i] = Fruits4[i][::-1]
     print Fruits4
+    Fruits.pop()
     print Fruits
+    return Fruits4
     
 
 
 if __name__ == "__main__":
-    fruitfun()
-    fruitfun2()
-    fruitfun3()
-    fruitfun4()
+    Fruits = ["Apples", "Pears", "Oranges", "Peaches"]
+    fruitfun(Fruits)
+    fruitfun2(Fruits)
+    fruitfun3(Fruits)
+    fruitfun4(Fruits)
