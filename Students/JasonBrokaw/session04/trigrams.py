@@ -1,6 +1,6 @@
 #!/usr/local/bin/python
 
-import urllib#, string
+import urllib
 import random, textwrap
 
 
@@ -10,11 +10,6 @@ base_text = base_text_file.read()
 
 base_text_file.close()
 
-#Maybe do some cleanup here; need to look more carefully at the file to figure that out
-
-# extra_punctuation = string.punctuation.strip("'-") #Leave some in
-
-# base_text = base_text.strip(extra_punctuation)
 
 base_list = base_text.split()
 
@@ -37,12 +32,6 @@ def generate_text(length=500, starting_key="Sherlock Holmes"):
         output.append(random.sample(trigrams[key],1)[0])
         key = " ".join(output[-2:])
     print textwrap.fill(" ".join(output))
-
-# print trigrams
-
-# for key in trigrams:
-#     if len(trigrams[key]) > 10:
-#         print key, trigrams[key]
 
 if __name__ == '__main__':
     generate_text()
