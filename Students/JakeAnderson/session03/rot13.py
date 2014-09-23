@@ -5,5 +5,5 @@ def rot13():
 
 
 if __name__ == '__main__':
-	solution = "hello world".encode('rot13').decode('rot13')
+	solution = "Hello World".encode('rot13').encode('rot13')
 	print solution
