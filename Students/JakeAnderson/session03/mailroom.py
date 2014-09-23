@@ -9,17 +9,19 @@ def MainMenu():
 		for key in doners:
 			print (key)
 	while display[0].lower() == "s":
-		name = raw_input("Who would you like to send a thank you card to? Please type a name, or type 'l' for a list of names to choose from. ")
+		name = raw_input("Who would you like to send a thank you card to? Please type a name, or type 'l' for a list of names to choose from.")
 		if name[0].lower() == "l":
 			for key in doners:
 				print (key)
 		while doners.has_key(name) is True:
-			d_amt = raw_input("Which donation amount would you like to thank them for? ")
+			d_amt = raw_input("Which donation amount would you like to thank them for? Type (back) to return to previous menu.")
+			if d_amt[0].lower() == "b":
+				break
 			try:
 	  			val = int(d_amt)
 	  			if not d_amt in doners:
 	  				doners.setdefault(name, []).append(d_amt)
-	  				print "Thank you %s for your donation of %i." % (name, val)
+	  				print "Thank you %s for your donation of $%i." % (name, val)
 	  				MainMenu()
 	  			else:
 	  				MainMenu()
@@ -31,11 +33,22 @@ def MainMenu():
 
 			
 	while display[0].lower() == "c":
-		for key in doners:
-			pass
+		reports = []
+		for (name, donation) in doners.items():
+			total = round(sum(donation))
+			number = len(donation)
+			av_gift = round(total / number, 2)
+			reports.append( (name, total, number, av_gift) )
+			print repr(name)
+			print repr(total)
+			print repr(number)
+			print repr(av_gift)
+
+		return False
+
 
 
 
 if __name__ == '__main__':
-			MainMenu()		
+	MainMenu()	
 
