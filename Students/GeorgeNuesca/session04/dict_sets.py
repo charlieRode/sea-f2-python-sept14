@@ -1,5 +1,3 @@
-
-
 # Part 1
 dessert = {u'name' : u'Chris', u'city' : u'Seattle', u'Cake' : u'chocolate'}
 print dessert
@@ -30,35 +28,41 @@ for key in dessert:
 print dessert
 
 # Part 4
-s2 = list(range(0,20))
-for s in s2[:]:
+s2 = set(range(20))
+for s in s2.copy():
     if s % 2 == 0:
         continue
     else:
         s2.remove(s)
 s2 = set(s2)
 
-
-s3 = list(range(0,20))
-for s in s3[:]:
+s3 = set(range(20))
+for s in s3.copy():
     if s % 3 == 0:
         continue
     else:
         s3.remove(s)
 s3 = set(s3)
 
-
-s4 = list(range(0,20))
-for s in s4[:]:
+s4 = set(range(20))
+for s in s4.copy():
     if s % 4 == 0:
         continue
     else:
         s4.remove(s)
-s4 = set(s4)
 
-print s2
-print s3
-print s4
+print 'Set divible by 2: ', s2  #A way to get rid of set during printing?
+print 'Set divible by 3: ', s3
+print 'Set divible by 4: ', s4
 
 print 'Is s3 a subset of s2: ', s3.issubset(s2)
 print 'Is s4 a subset of s2: ', s4.issubset(s2)
+
+# Part 5
+s1 = set('Python')
+s1.add('i')
+
+s2 = frozenset('marathon')
+
+print s1.union(s2)
+print s1.intersection(s2)
