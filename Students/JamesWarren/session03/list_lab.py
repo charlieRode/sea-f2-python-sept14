@@ -1,4 +1,4 @@
-#!/usr/env/python
+#!/usr/bin/env python
 
 #PART 1
 fruits = ["Apples", "Pears", "Oranges", "Peaches"]
