@@ -2,6 +2,7 @@
 import sys
 
 
+Fruits = ["Apples", "Pears", "Oranges", "Peaches"]
 
 def fruitfun(Fruits):
     """Execute Series 1"""
@@ -50,10 +51,10 @@ def fruitfun3(Fruits):
     
 def fruitfun4(Fruits):
     """Execute Series 4"""
-    Fruits4 = Fruits[:]
+    Fruits4 = []
     print "Begin Series 4"
-    for i in range(len(Fruits4)):
-        Fruits4[i] = Fruits4[i][::-1]
+    for i in Fruits:
+        Fruits4.append(i[::-1])
     print Fruits4
     Fruits.pop()
     print Fruits
@@ -62,7 +63,6 @@ def fruitfun4(Fruits):
 
 
 if __name__ == "__main__":
-    Fruits = ["Apples", "Pears", "Oranges", "Peaches"]
     fruitfun(Fruits)
     fruitfun2(Fruits)
     fruitfun3(Fruits)
