@@ -1,3 +1,5 @@
+#!/bin/sh
+
 #Exercise 1
 print "EXERCISE 1"
 fruit = [u'apples', u'pears' , u'oranges', u'peaches']
