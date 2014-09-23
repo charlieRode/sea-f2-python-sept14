@@ -1,6 +1,6 @@
 #!/usr/bin/env python2.7
 
-#Unknown if separating string and text is simpler or not... Too tired to redo it.
+# Using session04 approaches
 defaultdonors = [
 'Harry', [1000, 5000, 10000],
 'Franklin', [1000, 500, 750],
@@ -12,7 +12,7 @@ defaultdonors = [
 #Mailroom Function
 def main_menu(donors=defaultdonors):
     action = 0
-    while action not in ['1', '2', '3']:  # Difference with following syntax? (action != '1') or (action != '2') or (action != 'q'):
+    while (action != '1') or (action != '2') or (action != 'q'):  # Exits with the following sytax--> action not in ['1', '2', '3']:
         print '''
         Mailroom Menu:
         1. Send a Thank You
@@ -37,7 +37,7 @@ def thank_you(donors):
 
         # Go back to Mailroom Menu
         if thank == 'MM':
-            return main_menu(donors)
+            return donors
 
         # List of donors enetered.
         elif thank == 'list':
@@ -49,7 +49,7 @@ def thank_you(donors):
             while True:
                 donation = raw_input("Please enter a valid donation amount for current donor ($): ")
                 if donation == 'MM':
-                    return main_menu(donors)
+                    return donors
                 try:
                     if int(donation): #Evaluates if donation is an integer. Goes to except if not.
                         break
@@ -74,14 +74,15 @@ def thank_you(donors):
                 if verify in ['n', 'y']:
                     break
                 elif verify == 'MM':
-                    return main_menu(donors)
+                    return donors
                 verify = raw_input('Add %s to the donor list (y, n)? ' % thank)
             if verify == 'y':
-                donors = donors + [thank, []]
+                donors.append(thank)  #Use append instead of add.
+                donors.append([])#donors + ([thank, []])#.append([thank, []])
                 while True:
                     donation = raw_input("Please enter a valid donation amount for new donor ($): ")
                     if donation == 'MM':
-                        return main_menu(donors)
+                        return donors
                     try:  #Evaluates if donation is an integer. Goes to except if not.
                         if int(donation):  # Try .isdigit()
                             break
@@ -120,7 +121,7 @@ def report(donors):
         do.pop(0)
         print '{0:<20}     {1:^13}     {2:^19}     {3:^20}'.format(name,
             sum(do), len(do), sum(do)/len(do))
-    return main_menu(donors)
+    return donors
 
 if __name__ == '__main__':
     main_menu()
