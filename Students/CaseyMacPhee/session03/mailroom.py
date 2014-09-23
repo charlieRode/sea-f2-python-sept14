@@ -2,7 +2,7 @@
 
 import random
 import pprint
-
+import io
 dreamDonors = {'Bill Gates':[random.randint(500000, 1000000)],\
      'Leroy Hood': [random.randint(500000, 1000000)], 'Paul Allen': [random.randint(500000, 1000000)], 'Bill Ruckelshaus':\
       [random.randint(500000, 1000000), random.randint(500000, 1000000), random.randint(500000, 1000000)], 'Nathan Myhrvold':\
@@ -34,10 +34,19 @@ def mainPrompt():
 
     return userresponse
 
+def printAll():
+    for i in dreamDonors:
+        content = printThankYou(i, dreamDonors[i].sum())
+        outfile = io.open(i+'.txt', 'w')
+        outfile.write(content)
+        outfile.close()
+
+
 
 def donor():
     prompt = "Would you like a list of current donors? (type 'list') or...\n\
-    Enter a new donor name (full name) \n: "
+Enter a new donor name (full name) or...\n\
+Print thank you's for entire list? (type 'print all'): "
 
     donorName = safe_input(prompt)
     
@@ -46,6 +55,8 @@ def donor():
     if donorName == 'list':
         pp = pprint.PrettyPrinter(indent=4)
         pp.pprint(dreamDonors.keys())
+    elif donorName == 'print all':
+        printAll()
     else:
         amount = safe_input("And for what amount?\n: ")
         while not amount.isalnum():
@@ -66,6 +77,7 @@ def donor():
             printThankYou(donorName, donation)
 
 def printThankYou(name,amount):
+
     firstname, lastname = name.split(" ")
 
     letterformat = """
@@ -80,6 +92,7 @@ Thank you again, from all of us here.
 """
 
     print letterformat.format(firstname, amount)
+    return letterformat.format(firstname, amount)
     
 
 def report():
