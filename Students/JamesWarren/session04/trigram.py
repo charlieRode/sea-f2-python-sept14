@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+import random
 import io
 
 sherlock = io.open('sherlock.txt', mode='r')
@@ -12,27 +12,26 @@ for i in range(61):
 source = sherlock.read()
 sherlock.close()
 
+source = source.replace("--", ", ")
 source = source.split()
 
 source_dict = {}
 
 #loops through text, creates dictionary sets of "word1 word2 : word3"
 for i in range(len(source)-3):
-    source_dict.setdefault("%s %s" % (source[i], source[i+1]), []).append(source[i+2])
+    source_dict.setdefault("%s %s" % (source[i], source[i+1]), [])\
+    .append(source[i+2])
 
 trigram = ["This", "is"]
 
 
+for i in range(250):
+    joined = (" ").join(trigram[-2:])
+    r = random.randint(0, len(source_dict.get(joined))-1)
+    #if last two words of trigram match key in source_dict
+    if source_dict.get(joined):
+        #append the first value to the trigram
+        trigram.append(source_dict.get(joined)[r])
 
-for i in range(1000):
-    if source_dict.get((" ").join(trigram[-2:])):
-        trigram = trigram.append(source_dict[trigram[-2:]])
 
-##86
-#for key in source_dict.keys((" ").join(trigram[-2:])):
-#    if (" ").join(trigram[-2:]) == key:
-#        trigram = trigram.append(source_dict[key])
-#86
-
-print trigram
-    #find key of trigram[:-2] + trigram[:-1], .append(value of key) to trigram
+print (" ").join(trigram) + "..."
