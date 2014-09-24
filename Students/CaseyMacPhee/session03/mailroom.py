@@ -1,4 +1,4 @@
-#!/usr/env/python
+#!/usr/bin/env python
 
 import random
 import pprint
@@ -25,19 +25,21 @@ def mainPrompt():
 
         -type 'p' to print report
         -type 's' to send a thank you
-        -type 'q' to quit \n: """
+        -type 'q' to quit 
+        -type 'd' to delete donor from list\n: """
 
     userresponse = safe_input(s)
-    while userresponse != 'p' and userresponse != 's' and userresponse != 'q':
-        userresponse = safe_input("Please type either p', 's', or 'q'")
+    while userresponse != 'p' and userresponse != 's' and userresponse != 'q' and userresponse != 'd':
+        userresponse = safe_input("Please type either 'p', 's','q', 'd'")
 
 
     return userresponse
 
 def printAll():
     for i in dreamDonors:
-        content = printThankYou(i, dreamDonors[i].sum())
-        outfile = io.open(i+'.txt', 'w')
+        content = unicode(printThankYou(i, dreamDonors.get(i)[len(dreamDonors.get(i))]))
+        filename = "./" + i + ".txt"
+        outfile = io.open(filename, 'w')
         outfile.write(content)
         outfile.close()
 
@@ -46,35 +48,36 @@ def printAll():
 def donor():
     prompt = "Would you like a list of current donors? (type 'list') or...\n\
 Enter a new donor name (full name) or...\n\
-Print thank you's for entire list? (type 'print all'): "
+Print thank you's for entire list? (type 'print all')\n: "
 
     donorName = safe_input(prompt)
-    
-    while not donorName.isalpha():
-        donorName = safe_input(prompt)
-    if donorName == 'list':
-        pp = pprint.PrettyPrinter(indent=4)
-        pp.pprint(dreamDonors.keys())
-    elif donorName == 'print all':
-        printAll()
-    else:
-        amount = safe_input("And for what amount?\n: ")
-        while not amount.isalnum():
-            amount = safe_input("Please enter a number value")
-        
-        donation = int(amount)
-        inlist = False
+    try:
 
-        for name in dreamDonors:
-            if donorName == name:
-                dreamDonors.get(name).append(donation)
-                inlist = True
-        if inlist == False:
-            dreamDonors[donorName] = [donation]
+        if donorName == "print all":
+            printAll()
+        elif donorName == "list":
+            pp = pprint.PrettyPrinter(indent=4)
+            pp.pprint(dreamDonors.keys())
+        else:
+            amount = safe_input("And for what amount?\n: ")
+            while not amount.isalnum():
+                amount = safe_input("Please enter a number value")
+            
+            donation = int(amount)
+            inlist = False
 
-        answer = safe_input("Would you like to print a thank you? (type 'y' for yes or 'n' for no)\n: ")
-        if  answer == 'y':
-            printThankYou(donorName, donation)
+            for name in dreamDonors:
+                if donorName == name:
+                    dreamDonors.get(name).append(donation)
+                    inlist = True
+            if inlist == False:
+                dreamDonors[donorName] = [donation]
+
+            answer = safe_input("Would you like to print a thank you? (type 'y' for yes or 'n' for no)\n: ")
+            if  answer == 'y':
+                printThankYou(donorName, donation)
+    except:
+        print "\n"
 
 def printThankYou(name,amount):
 
@@ -82,7 +85,7 @@ def printThankYou(name,amount):
 
     letterformat = """
 Dear {},
-\tOur sincerest thanks for your contribution to our cause. Your donation of ${:,} will undoubtably be \
+Our sincerest thanks for your contribution to our cause. Your donation of ${:,} will undoubtably be \
 an integral part of our success in the coming year. We expect it to be a difficult road ahead, \
 but we truly derive strength from, and are encouraged by the outpouring of generosity from donors \
 like yourself. Feel free to subscribe to our mailing list, or check out our blog to follow our \
@@ -91,9 +94,24 @@ small token of our gratitude, and a way to show others your continued support of
 Thank you again, from all of us here.
 """
 
-    print letterformat.format(firstname, amount)
+    #print letterformat.format(firstname, amount)
     return letterformat.format(firstname, amount)
     
+def deleteDonor():
+    print "Who would you like to delete from the list?"
+    pp = pprint.PrettyPrinter(indent=4)
+    pp.pprint(dreamDonors.keys())
+    print "\n"
+
+    answer = safe_input("Type the name exactly as it appears, or 'b' to go back\n: ")
+    try:
+        if answer != 'b':
+            try:
+                dreamDonors.pop(answer)
+            except:
+                print "That name does not match anyone in the list"
+    except:
+        print "\n"
 
 def report():
     statlist = []
@@ -117,13 +135,16 @@ if __name__ == '__main__':
     
     while True:
 
-        response = mainPrompt() 
+        response = mainPrompt()
+
         if response == 'q':
             break
         elif response == 's':
             donor()
         elif response == 'p':
             report()
+        elif response == 'd':
+            deleteDonor()
 
 
     
