@@ -52,6 +52,13 @@ def setfunction():
     print s3.issubset(s2)
     print s4.issubset(s2)
     
+def frozensetfun():
+    pythonset = set('Python')
+    pythonset.add('i')
+    marathonset = frozenset('marathon')
+    print pythonset.union(marathonset)
+    print pythonset.intersection(marathonset)
+    
 
 
 
@@ -63,3 +70,4 @@ if __name__ == "__main__":
     dictfunction2()
     dictfunction3()
     setfunction()
+    frozensetfun()
