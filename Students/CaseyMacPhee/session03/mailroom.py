@@ -36,48 +36,49 @@ def mainPrompt():
     return userresponse
 
 def printAll():
+
     for i in dreamDonors:
-        content = unicode(printThankYou(i, dreamDonors.get(i)[len(dreamDonors.get(i))]))
+
+        content = unicode(printThankYou(i, dreamDonors.get(i)[-1]))
         filename = "./" + i + ".txt"
+        print "Writing file name: ", filename
         outfile = io.open(filename, 'w')
         outfile.write(content)
         outfile.close()
 
-
-
 def donor():
     prompt = "Would you like a list of current donors? (type 'list') or...\n\
 Enter a new donor name (full name) or...\n\
-Print thank you's for entire list? (type 'print all')\n: "
+Print thank you's for entire list? (type 'print all')\n: " 
 
     donorName = safe_input(prompt)
-    try:
+    
 
-        if donorName == "print all":
-            printAll()
-        elif donorName == "list":
-            pp = pprint.PrettyPrinter(indent=4)
-            pp.pprint(dreamDonors.keys())
-        else:
-            amount = safe_input("And for what amount?\n: ")
-            while not amount.isalnum():
-                amount = safe_input("Please enter a number value")
-            
-            donation = int(amount)
-            inlist = False
+    if donorName == "print all":
+        print "got to the print all call"
+        printAll()
+    elif donorName == "list":
+        pp = pprint.PrettyPrinter(indent=4)
+        pp.pprint(dreamDonors.keys())
+    else:
+        amount = safe_input("And for what amount?\n: ")
+        while not amount.isalnum():
+            amount = safe_input("Please enter a number value")
+        
+        donation = int(amount)
+        inlist = False
 
-            for name in dreamDonors:
-                if donorName == name:
-                    dreamDonors.get(name).append(donation)
-                    inlist = True
-            if inlist == False:
-                dreamDonors[donorName] = [donation]
+        for name in dreamDonors:
+            if donorName == name:
+                dreamDonors.get(name).append(donation)
+                inlist = True
+        if inlist == False:
+            dreamDonors[donorName] = [donation]
 
-            answer = safe_input("Would you like to print a thank you? (type 'y' for yes or 'n' for no)\n: ")
-            if  answer == 'y':
-                printThankYou(donorName, donation)
-    except:
-        print "\n"
+        answer = safe_input("Would you like to print a thank you? (type 'y' for yes or 'n' for no)\n: ")
+        if  answer == 'y':
+            printThankYou(donorName, donation)
+   
 
 def printThankYou(name,amount):
 
@@ -85,11 +86,11 @@ def printThankYou(name,amount):
 
     letterformat = """
 Dear {},
-Our sincerest thanks for your contribution to our cause. Your donation of ${:,} will undoubtably be \
-an integral part of our success in the coming year. We expect it to be a difficult road ahead, \
-but we truly derive strength from, and are encouraged by the outpouring of generosity from donors \
-like yourself. Feel free to subscribe to our mailing list, or check out our blog to follow our \
-progress, and to see your dollars in action. Expect a gift from us in the mail soon- just a \
+Our sincerest thanks for your contribution to our cause. Your donation of ${:,} will undoubtably be\
+an integral part of our success in the coming year. We expect it to be a difficult road ahead,\
+but we truly derive strength from, and are encouraged by the outpouring of generosity from donors\
+like yourself. Feel free to subscribe to our mailing list, or check out our blog to follow our\
+progress, and to see your dollars in action. Expect a gift from us in the mail soon- just a\
 small token of our gratitude, and a way to show others your continued support of our efforts.
 Thank you again, from all of us here.
 """
