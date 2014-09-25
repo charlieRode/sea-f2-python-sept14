@@ -1,4 +1,4 @@
-#!usr/bin/python
+#!/usr/bin/env python
 
 #Exercise 1
 print "EXERCISE 1"

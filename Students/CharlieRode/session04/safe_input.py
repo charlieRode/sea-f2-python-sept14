@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env python
 
 def safe_input(message):
     try:

@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/env python
 import io, urllib2, random
 
 def two_words(l):
@@ -69,7 +69,7 @@ if __name__ == '__main__':
 
     tridict= build_dict(lines)
     
-    p= io.open('story.txt', 'w')
+    p= io.open('trigram_story.txt', 'w')
     for i in range(5):
         p.write(build_paragraph(tridict))
     p.close()
