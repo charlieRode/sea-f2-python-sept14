@@ -12,7 +12,7 @@ defaultdonors = [
 #Mailroom Function
 def main_menu(donors=defaultdonors):
     action = 0
-    while (action != '1') or (action != '2') or (action != 'q'):  # Exits with the following sytax--> action not in ['1', '2', '3']:
+    while action not in ['1', '2', 'q']:#(action != '1') or (action != '2') or (action != 'q'):  # Exits with the following sytax--> action not in ['1', '2', 'q']:
         print '''
         Mailroom Menu:
         1. Send a Thank You
@@ -27,6 +27,7 @@ def main_menu(donors=defaultdonors):
             report(donors)
         elif action == 'q':
             break
+        action = 0
     return
 
 #Thank you menu
