@@ -1,4 +1,4 @@
-#!/bin/sh
+#!usr/bin/python
 
 #Exercise 1
 

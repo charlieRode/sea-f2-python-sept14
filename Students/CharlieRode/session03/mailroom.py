@@ -1,4 +1,4 @@
-#!/bin/sh
+#!usr/bin/python
 
 def is_a_num(string):
     """Determines if a string represents an int or a float"""
