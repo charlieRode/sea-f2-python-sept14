@@ -60,7 +60,10 @@ if __name__ == '__main__':
     sherlock_holmes= result.read().decode("utf-8")
     result.close()
 
-    f= io.open('Sherlock_Holmes.txt', 'r+')
+    sh= 'Sherlock_Holmes.txt'
+    open(sh, 'a').close()
+
+    f= io.open(sh, 'r+')
     f.write(sherlock_holmes)
 
     f.seek(0)
