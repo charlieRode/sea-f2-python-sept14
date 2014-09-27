@@ -21,3 +21,15 @@ format_string = "{name} is from {city} and he or she likes " + ", ".join(likes_f
 
 print format_string.format(**food_prefs)
 
+#STEP 2
+print "STEP 2"
+hex_dict = dict(enumerate([hex(i) for i in range(16)]))
+print hex_dict
+
+#STEP 3
+print "STEP 3"
+hex_dict = {i: hex(i) for i in range(16)}
+
+print hex_dict
+
+
