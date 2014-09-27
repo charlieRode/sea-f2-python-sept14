@@ -36,3 +36,26 @@ print hex_dict
 print "STEP 4"
 a_counts = {key: food_prefs[key].count('a') for key in food_prefs}
 print a_counts
+
+#STEP 5
+print "STEP 5"
+#5a
+s2 = {i for i in range(21) if not i % 2}
+s3 = {i for i in range(21) if not i % 3}
+s4 = {i for i in range(21) if not i % 4}
+print "5a, built line-by-line"
+print s2, s3, s4
+#5b
+multiples = []
+for n in range(2,5):
+    multiples.append({i for i in range(21) if not i % n})
+print "5b, built in a loop"
+print multiples[0], multiples[1], multiples[2]
+print multiples
+#5c
+print "5c, built in nested comprehension"
+multiples = [{i for i in range(21) if not i % n} for n in range(2,5)]
+print multiples[0], multiples[1], multiples[2]
+print multiples
+
+
