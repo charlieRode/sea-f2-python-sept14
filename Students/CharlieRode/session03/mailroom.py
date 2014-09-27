@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 
+import io, os
+
 def is_a_num(string):
     """Determines if a string represents an int or a float"""
+    """This function is vestigial. Replaced with try/except command"""
     string = string.decode("utf-8")
     for c in string:
         if c in [',', '.']:
@@ -11,7 +14,7 @@ def is_a_num(string):
     return True
 
 def thankyou_mail(name, donation):
-    letter = "\n\nDear %s,\n\nThank you for your generous donation of $%.2f. The Society for Gerbils with Skin Cancer depends\nupon the support of caring individuals like yourself and is grateful for your contribution. \n\nSincerely,\nFat Patty\n______________________________\n\nSGSC\nSaving the World One Gerbil at a Time" % (name, donation)
+    letter = u"\n\nDear %s,\n\nThank you for your generous donation of $%.2f. The Society for Gerbils with Skin Cancer depends\nupon the support of caring individuals like yourself and is grateful for your contribution. \n\nSincerely,\nFat Patty\n______________________________\n\nSGSC\nSaving the World One Gerbil at a Time" % (name, donation)
     return letter + "\n\n"
 
 def doner_stats(name):
@@ -32,6 +35,20 @@ def display_report():
         print doner_stats(person)
     print "\n\n"
 
+def write_letters():
+    """Creates a new directory in the current working directory and creates a set of thank-you letters for each doner"""
+    cwd= os.getcwdu()
+    os.mkdir(u'thank_you_letters')
+    os.chdir(u'thank_you_letters')
+
+    for name in doners.keys():
+        file_name= (u'thank_you_%s.txt' % name).replace(u' ', u'_')
+        open(file_name, 'a').close()
+        p= io.open(file_name, 'w')
+        p.write(thankyou_mail(name, doners[name][len(doners[name]) - 1]))
+        p.close()
+        
+    os.chdir(cwd)
 
 doners = {}
 doners["Abraham Lincoln"] = (100.00, 150.00)
@@ -43,6 +60,8 @@ doners["Papa Smurf"] = (1000.00, 750.00, 1000.00)
 
 
 if __name__ == "__main__":
+
+    write_letters()
 
     while True:
         main_menu = raw_input(u"[1] Send a 'Thank You' \n[2] Create a Report\n[Q]uit\n ").title()
