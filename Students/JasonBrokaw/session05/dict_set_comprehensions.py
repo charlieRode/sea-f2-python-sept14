@@ -32,4 +32,7 @@ hex_dict = {i: hex(i) for i in range(16)}
 
 print hex_dict
 
-
+#STEP 4
+print "STEP 4"
+a_counts = {key: food_prefs[key].count('a') for key in food_prefs}
+print a_counts
