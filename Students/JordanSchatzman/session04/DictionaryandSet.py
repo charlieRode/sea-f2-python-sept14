@@ -36,6 +36,7 @@ def dictfunction3():
     print Dictionary3
     
 def setfunction():
+    """create a few sets with numbers divisible by 2, 3, 4 and test if they're subsets of each other"""
     s2 = []
     s3 = []
     s4 = []
@@ -52,7 +53,8 @@ def setfunction():
     print s3.issubset(s2)
     print s4.issubset(s2)
     
-def frozensetfun():
+def frozensetfunction():
+    """create a frozen set"""
     pythonset = set('Python')
     pythonset.add('i')
     marathonset = frozenset('marathon')
@@ -70,4 +72,4 @@ if __name__ == "__main__":
     dictfunction2()
     dictfunction3()
     setfunction()
-    frozensetfun()
+    frozensetfunction()

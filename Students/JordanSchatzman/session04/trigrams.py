@@ -7,6 +7,7 @@ import random
 
 def trigram(in_file):
     """create trigram given input text file"""
+    #open and process the text file
     file = codecs.open(in_file)
     file_text = file.read()
     file_words = file_text.split()
