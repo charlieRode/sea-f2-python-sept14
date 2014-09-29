@@ -17,14 +17,14 @@ class Element(object):
     def render(self, file_out, ind=""):
         """ render the content to the given file """
         cind = ind
+        file_out.write("\n%s<%s>" % (ind, self.tag))
         ind += "    "
-        file_out.write("<%s>\n%s" % (self.tag, ind))
         for item in self.content:
             try:
                 item.render(file_out, ind)
             except AttributeError:
                 file_out.write(("\n"+ind).join(self.content))
-        file_out.write("\n%s</%s>\n%s" % (cind, self.tag, cind))
+        file_out.write("\n%s</%s>" % (cind, self.tag))
 
 class Html(Element):
     tag = "html"
@@ -40,8 +40,8 @@ class Head(Element):
 
 class OneLineTag(Element):
     def render(self, file_out, ind=""):
-        ind += "    "
-        file_out.write("<%s> %s </%s>%s" % (self.tag, self.content, self.tag, ind))
+        #ind += "    "
+        file_out.write("\n%s<%s> %s </%s>" % (ind, self.tag, self.content, self.tag))
 
 class Title(OneLineTag):
     tag = "title"
