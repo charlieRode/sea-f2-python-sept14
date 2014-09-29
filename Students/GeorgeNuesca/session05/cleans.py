@@ -10,18 +10,20 @@ def cleans():
 
     filename = 1
     while filename not in cdir:
-        filename = raw_input('FiLe not in directory. Choose a valid file: ')
+        filename = raw_input('Choose a valid file: ')
 
     foo = open(filename, 'r')
     reading = foo.readlines()
     foo.close()
 
-    newer = map(string.strip, reading)
+    newer = []
+    [newer.append(string.strip(read)) for read in reading]
+    # newer = map(string.strip, reading)
 
-    for i, new in enumerate(newer):
-        newer[i] = new + '\n'
-
-    newerer = ''.join(newer)
+    newerer = ''.join([new + '\n' for i, new in enumerate(newer)])
+    # for i, new in enumerate(newer):
+    #     newer[i] = new + '\n'
+    # newerer = ''.join(newer)
 
     writeover = 0
     while writeover not in ['y','n']:
