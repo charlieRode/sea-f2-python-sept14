@@ -5,7 +5,9 @@ import os
 def copyfiles():
 
     cdir = os.listdir(os.getcwd())  # Gets the directory and lists its files.
-    for file in cdir:A
+    print cdir
+
+    for file in cdir:
         filein = raw_input('Type a filename from the list to copy or q to quit: ')
         if filein == 'q':
             return
