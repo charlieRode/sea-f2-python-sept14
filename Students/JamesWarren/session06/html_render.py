@@ -4,13 +4,17 @@ class Element(object):
     tag = "html"
     ind = ""
     
-    def __init__(self, content=None):
+    def __init__(self, content=None, id=None, style=None):
         if content is None:
             self.content = []
         else:
             self.content = [content]
+        if style is None:
+            self.style = []
+        else:
+            self.style = [style]
 
-    def append(self,append_content):
+    def append(self,append_content, style=None):
         """ append new content to element """
         self.content.append(append_content)
 
